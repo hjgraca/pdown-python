@@ -6,7 +6,6 @@ from urllib.parse import parse_qs
 import sys
 from datetime import datetime
 import time
-import string
 
 #auth_cookie = "optimizelyEndUserId=oeu1416418471489r0.5932143593672663; mf_23f90557-90d2-4682-9764-9e0e1aa7dc97=-1; __uvt=; newSiteVisited=true; __RequestVerificationToken_L2E1=KvSnrAwdch34X0YXpW6QmO_dUi-f53f4-0Sl6xZo3S3Yse02rU2oxBpWZCNWRT2G4epu2FTH31i21GbP4kMR_wf7CaY1; psPlayer=%7B%22videoScaling%22%3A%22Scaled%22%2C%22videoQuality%22%3A%22High%22%7D; __cfduid=d8d3437c6ec1bfa3c6196ce8d60efe1291421233381; __utma=195666797.1071572145.1416418472.1418391652.1421233384.2; __utmc=195666797; __utmz=195666797.1421233384.2.2.utmcsr=pluralsight.com|utmccn=(referral)|utmcmd=referral|utmcct=/; mp_super_properties=%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//www.pluralsight.com/%22%2C%22%24initial_referring_domain%22%3A%20%22www.pluralsight.com%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D; ASP.NET_SessionId=05ahzev4oby3thxe0tnfp5mf; _dc_gtm_UA-5643470-2=1; _gat_UA-5643470-2=1; csAnnouncmentShown=true; PSM=687BDBA8680BA6D5D110E69F084B17E21749D61F4B83BF26E2B48FE9E0F0A8E35BFE6BA70736D3C4079B61A3D8FD7F9E2DD5572C190E70E0B6B401A3985441333314962006B020EAA1F824114CEE9B555C4DBB81DAC51F5C4568AEA9F75545C17B1DDCA30FB67647B14C7A74A0F88CAD104CE2B4; _uslk_visits=1; _uslk_referrer=https%3A%2F%2Fwww.google.co.uk%2F; _uslk_bootstrapped=1; _uslk_ct=0; _uslk_co=0; _uslk_active=0; _uslk_page_impressions=17; _uslk_app_state=Idle%3B0; _gali=mfa7; optimizelySegments=%7B%221227392893%22%3A%22search%22%2C%221248401246%22%3A%22gc%22%2C%221258181237%22%3A%22false%22%7D; optimizelyBuckets=%7B%222312010859%22%3A%222321470446%22%2C%222373390355%22%3A%222355640542%22%7D; optimizelyPendingLogEvents=%5B%5D; _ga=GA1.2.1071572145.1416418472; _we_wk_ss_lsf_=true; __ar_v4=ALUY7XVFIBAENNNGZSQOT6%3A20150106%3A3%7CPHHEMWCT7RGRDFUHGCNCJV%3A20150106%3A6%7CBFLWHRV7W5FLTIZIQ4OSO6%3A20150106%3A84%7CNPTOMQSYYZABNNUIQDRAKL%3A20150106%3A84%7C4YCMENXFKFBQLNQCLOV3GS%3A20150106%3A32%7CDOMT5ESRMRH2PDG3LFNDCP%3A20150106%3A36%7CG2LTJRL5ORA4PICF7WRTYP%3A20150108%3A7; uvts=1dJohRWautxxAsDN; visitor_id36882=62000172"
 auth_cookie = "optimizelyEndUserId=oeu1422362575640r0.9676906249951571; newSiteVisited=true; mf_23f90557-90d2-4682-9764-9e0e1aa7dc97=-1; _dc_gtm_UA-5643470-2=1; _gat_UA-5643470-2=1; csAnnouncmentShown=true; __uvt=; __RequestVerificationToken_L2E1=Vjdcwdtf6TOJJ_X_BwQvicaEz_FSjeqO6YkyNeWpXTMingetslvQMnMokVNgN2Eri57fHLz7zfR_Vh44CyEZ_IPI6go1; PSM=92BB9C81692C8EF830E4FE1D85FB7C68008959D10397B8231F0D2BA0D19228546F5D2913A55CAD38AAE5E2CE02F04A2405EA664101D8680C5C7C72F52AC1506AF8C5EDDC3EEEF730776730C612D2EF6DD02D578666E0B6578699D0371CE6171CC7739CF37022558D6F0BC2EA75478F527DEF37F1A7A77836F15FF2667BE1D64B1EF6EDD4CB177AD70F5D7F0040F0AB4496F15B6BAAF9250B4976068C0B3EFF5C10609463BD81018D46D355DB463ABF6AD74A7BD2; visitor_id36882=73523072; _gali=mfa52; optimizelySegments=%7B%221227392893%22%3A%22direct%22%2C%221248401246%22%3A%22gc%22%2C%221258181237%22%3A%22false%22%7D; optimizelyReferrer=; optimizelyBuckets=%7B%222312010859%22%3A%222321470446%22%2C%222373390355%22%3A%222321861900%22%7D; _ga=GA1.2.390107053.1422362576; optimizelyPendingLogEvents=%5B%5D; _we_wk_ss_lsf_=true; __ar_v4=NCTBDPMUBNA2FPNKWLTYKE%3A20150126%3A1%7CBFLWHRV7W5FLTIZIQ4OSO6%3A20150126%3A11%7CNPTOMQSYYZABNNUIQDRAKL%3A20150126%3A11%7C4YCMENXFKFBQLNQCLOV3GS%3A20150126%3A8%7CPHHEMWCT7RGRDFUHGCNCJV%3A20150126%3A1%7CDOMT5ESRMRH2PDG3LFNDCP%3A20150126%3A1; uvts=2cqKX8fGhEEi90mS"
@@ -31,9 +30,10 @@ def make_requests(url):
 			for clip in item['clips']:
 				par = parse_qs(urllib.parse.urlparse('http://something.com?' + clip['playerParameters']).query, keep_blank_values=True)
 				
-				title = "".join(x for x in clip['title'] if x.isalnum())
-				name = "".join(x for x in clip['name'] if x.isalnum())
-				itemTitle = "".join(x for x in item['title'] if x.isalnum())
+				title = "".join(x for x in clip['title'] if x not in "\/:*?<>|")
+				name = "".join(x for x in clip['name'] if x not in "\/:*?<>|")
+				itemTitle = "".join(x for x in item['title'] if x not in "\/:*?<>|")
+				
 				
 				dir = os.getcwd() + "\\" + url + "\\"
 				directory = dir + str(id) + "-" + itemTitle + "\\";
